@@ -1,0 +1,27 @@
+[project]
+name = "ip-reporter"
+version = "0.1.0"
+description = "ip report"
+authors = [
+    {name = "banksy", email = "zhuang1994123@gmail.com"},
+]
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "websockets",
+    "requests",
+    "jinja2",
+    "python-socks",
+    "python-dotenv",
+]
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
