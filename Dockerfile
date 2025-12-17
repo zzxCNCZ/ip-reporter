@@ -30,7 +30,7 @@ RUN uv pip install --system -r requirements.txt
 # Copy project files
 COPY server ./server
 COPY client ./client
-COPY .env ./.env
+#COPY .env ./.env
 
 # Expose port
 EXPOSE 8000
