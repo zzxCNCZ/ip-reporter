@@ -1,7 +1,7 @@
 import logging
 from typing import List, Dict
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import json
@@ -60,6 +60,10 @@ async def get(request: Request):
     # Serve the static HTML file
     with open("server/static/index.html", "r") as f:
         return HTMLResponse(content=f.read())
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return FileResponse("server/static/favicon.ico")
 
 @app.get("/api/clients")
 async def get_clients():
