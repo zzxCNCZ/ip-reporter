@@ -79,10 +79,18 @@ The dashboard will be available at [http://localhost:8000](http://localhost:8000
     docker build -t ip-reporter .
     ```
 
-2.  **Run the container**:
+2.  **Run Server (Default)**:
     ```bash
-    docker run -d -p 8000:8000 --name ip-reporter ip-reporter
+    docker run -d -p 8000:8000 --name ip-reporter-server ip-reporter
     ```
+
+3.  **Run Client (Override CMD)**:
+    ```bash
+    # Note: Use host networking or correct SERVER_URL if running on different machines
+    # In this example we link to the server container or use host network
+    docker run -d --network="host" --name ip-reporter-client ip-reporter python client/client.py
+    ```
+    *Or if using Docker Compose, see the `ip-reporter-client` service in `docker-compose.yml`.*
 
 ## API / Endpoints
 

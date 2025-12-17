@@ -18,6 +18,22 @@ services:
     networks:
       - ip-reporter-network
 
+  # Optional: Run client in a separate container using the same image
+  ip-reporter-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ip-reporter-client
+    # Override CMD to run client script
+    command: [ "python", "client/client.py" ]
+    environment:
+      - SERVER_URL=ws://ip-reporter:8000/ws/client
+    depends_on:
+      - ip-reporter
+    networks:
+      - ip-reporter-network
+    restart: on-failure
+
 networks:
   ip-reporter-network:
     driver: bridge
